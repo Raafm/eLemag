@@ -1,0 +1,17 @@
+Problema
+
+Um capacitor de placas paralelas, de lado L,  ́e mostrado na figura abaixo. Assuma que o meio seja espa ̧co
+livre. E que a placa condutora em z = 0 seja mantida em um potencial 0 V, enquanto a placa condutora
+em z = d  ́e mantida em um potencial Vo V. Aplique o m ́etodo dos momentos para determinar a distribuiçao
+superficial de carga na placas. Para tanto divida os lados maiores das placas em N segmentos (N par).
+
+1. Determine as express ̃oes para os elementos das matrizes de impedˆancia e de tens ̃ao do m ́etodo dos
+momentos, em fun ̧c ̃ao de N.
+2. Para o caso em que L = 10 cm, d = 2 mm, e V0 = 10 V, resolva o sistema linear para um valor de
+N espec ́ıfico (vocˆe escolhe). Determine as amplitudes dos pulsos, e obtenha uma aproxima ̧c ̃ao para a
+distribui ̧c ̃ao de carga superficial na placa. Plote o resultado.
+3. Resolva o problema e plote a distribui ̧c ̃ao superficial de carga para diferentes valores de N. Comente
+os resultados.
+4. Determine a express ̃ao da Capacitˆancia para a aproxima ̧c ̃ao da carga atrav ́es fun ̧c ̃oes pulso e m ́etodo
+dos momentos. Varie N, observe a convergˆencia da capacitˆancia e compare com o valor anal ́ıtico
+aproximado (aproxima ̧c ̃ao planar usual).

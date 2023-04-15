@@ -1,0 +1,32 @@
+N sempre será par.
+
+Note que o número de elementos em cada placa será (3/4)N^2.
+Como temos 2 placas, devemos ter M = (3/2)N^2 elementos.
+
+
+Adotaremos a seguinte indexacao (0 indexado):
+    do elemento 0 até o elemento M/2 -1 estaremos na placa de baixo.
+    do elemento M/2 até o elemento  M -1 estaremos na placa de cima.
+
+Para descobrir se um elemento está na placa de cima ou de baixo basta verificar se seu indice matricial m é maior que M/2.
+
+A indexacao dentro da placa de baixo será aquela no arquivo "img-indexacao.png".
+
+Os indices da posicao espacial (i,j) estao relacionados com o indice m da seguinte forma:
+
+Se m < (N^2)/2 o elemento está na parte inferior do L:
+    i = m%N
+    j = m//N, que é a divisao inteira
+
+Se m >= (N^2)/2 o elemento está na parte superior do L:
+    i = m%(N/2) 
+    j = m//(N/2)    
+
+
+A indexacao na placa de cima será a mesma, porém com os valores somados M/2
+Podemos obter o indice i, j dela subtraindo do indice matricial m o valor M/2, pois cairemos no caso da placa de baixo.
+
+Para obtermos x,y:
+x = (i + 0.5)*delta
+y = (j + 0.5)*delta
+z = d se for superior ou 0 se for na placa inferior
