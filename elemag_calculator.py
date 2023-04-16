@@ -58,8 +58,8 @@ class ElemagSpaceCalculator(IndexSpaceConverter):
 
 # testando
 if __name__ == "__main__":
-    N = 4
-    calculator = ElemagSpaceCalculator(N = N, L = 16, d = 1)
+    N = 128
+    calculator = ElemagSpaceCalculator(N = N, L = 16, d = 0.1)
 
     print("M:",calculator.M)
     print("N:",calculator.N)
