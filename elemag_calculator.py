@@ -7,9 +7,10 @@ k_elemag = 1/(4*np.pi*epsolon0)
 class ElemagSpaceCalculator(IndexSpaceConverter):
     def __init__(self,N,L,d):
         super().__init__(N,L,d)
-        self.Z_matrix = None
-        self.V = np.array([0]*(self.M//2) + [1]*(self.M//2))
-        self.a_vector = None
+        self.Z_matrix = None # Mátriz de Impedância
+        self.V = np.array([0]*(self.M//2) + [1]*(self.M//2)) # Potêncial , M é o número de elemetos que temos
+                                                            # Placa de cima tem potêncial 1 e a de baixo 0
+        self.a_vector = None # Ele x area = carga que tem no ponto, algo como a densidade de carga  ( verificar no slide)
 
     def Z(self, m,n):
 
