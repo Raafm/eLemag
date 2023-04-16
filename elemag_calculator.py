@@ -14,7 +14,7 @@ class ElemagSpaceCalculator(IndexSpaceConverter):
         self.Z_matrix = None  # Mátriz de Impedância
         # Potêncial , M é o número de elemetos que temos
         self.V = np.array([0]*(self.M//2) + [1]*(self.M//2))
-        print(self.V)
+        print("Shape of V", self.V.shape)
         # Placa de cima tem potêncial 1 e a de baixo 0
         # Ele x area = carga que tem no ponto, algo como a densidade de carga  ( verificar no slide)
         self.a_vector = None
