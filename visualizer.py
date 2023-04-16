@@ -8,65 +8,68 @@ from elemag_calculator import ElemagSpaceCalculator
 
 
 class Visualizer:
-    def __init__(self, N ,X = None, Y = None, Q = None):
+    def __init__(self, N, X=None, Y=None, Q=None):
         self.N = N
-        self.X = X, 
+        self.X = X,
         self.Y = Y
         self.Q = Q
-    
+
     def plot_charge_distribution(self):
         fig, ax = plt.subplots(subplot_kw={"projection": "3d"})
 
         # Plot the surface.
         surf = ax.plot_surface(self.X, self.Y, self.Q, cmap=cm.coolwarm,
-                                linewidth=0, antialiased=False)
+                               linewidth=0, antialiased=False)
 
         # Customize the z axis.
-        #ax.set_zlim(-1.01, 1.01)
-        #ax.zaxis.set_major_locator(LinearLocator(10))
+        # ax.set_zlim(-1.01, 1.01)
+        # ax.zaxis.set_major_locator(LinearLocator(10))
         # A StrMethodFormatter is used automatically
-        #ax.zaxis.set_major_formatter('{x:.02f}')
+        # ax.zaxis.set_major_formatter('{x:.02f}')
 
         # Add a color bar which maps values to colors.
         fig.colorbar(surf, shrink=0.5, aspect=5)
 
         plt.show()
-    
+
     def plot_color_charge_distribution(self, charge_distribution_matrix, show_image=False):
         # media = charge_distribution_matrix.mean()
-        plt.imshow(charge_distribution_matrix, cmap='hot_r')#, interpolation='nearest')
+        # , interpolation='nearest')
+        plt.imshow(charge_distribution_matrix, cmap='hot_r')
         plt.colorbar()
-        if show_image: plt.show()
+        if show_image:
+            plt.show()
 
-    def plot3D_charge_distribution(self, charge_distribution, show_image=False):
+    def plot3D_charge_distribution(self, charge_distribution, show_image=False, title=""):
         m, n, = charge_distribution.shape
         X = np.arange(m)
         Y = np.arange(n)
-        X,Y = np.meshgrid(X,Y)
+        X, Y = np.meshgrid(X, Y)
         fig = plt.figure()
         ax = fig.add_subplot(111, projection='3d')
-        
-        ax.plot_surface(X, Y, charge_distribution,cmap=cm.coolwarm)
-        if show_image: plt.show()
+        plt.title(title)
+        ax.plot_surface(X, Y, charge_distribution, cmap=cm.coolwarm)
+        if show_image:
+            plt.show()
+
 
 if __name__ == '__main__':
-    N = 16
-    d = 16
-    L = 16
-
-    calculator = ElemagSpaceCalculator(N = N, L = L, d = d)
+    N = 10
+    d = 10e-2
+    L = 2e-3
+    V0 = 10
+    calculator = ElemagSpaceCalculator(N=N, L=L, d=d, V0=V0)
     calculator.calculate_a_vector()
-    visualizador = Visualizer(N = N)
+    visualizador = Visualizer(N=N)
 
     charge_distribution = calculator.generate_spatial_charge_matrix()
 
     # plt.subplot(1,2,1)
-    plt.title("placa inferior")
-    visualizador.plot3D_charge_distribution(charge_distribution[:,:,0],show_image=True)
+    visualizador.plot3D_charge_distribution(
+        charge_distribution[:, :, 0], show_image=True, title="Placa Inferior")
 
-    plt.title("placa superior")
-    visualizador.plot3D_charge_distribution(charge_distribution[:,:,1],show_image=True)
-
+    visualizador.plot3D_charge_distribution(
+        charge_distribution[:, :, 1], show_image=True, title="Placa Superior")
 
     # for N in [4,8,16,32,64]:
     #     print("N =",N)
@@ -83,20 +86,17 @@ if __name__ == '__main__':
     #     plt.subplot(1,2,2)
     #     plt.title("placa superior")
     #     visualizador.plot_color_charge_distribution(charge_distribution[:,:,1])
-        
-    #     plt.show()
-    
-    
 
-        
+    #     plt.show()
+
     # X = []
     # Y = []
     # Q = calculator.a_vector
     # for m in range(calculator.M):
-    #     x,y,z = calculator.get_spatial_positions(m) 
+    #     x,y,z = calculator.get_spatial_positions(m)
     #     X.append(x)
     #     Y.append(y)
-    
+
     # X = np.array(X)
     # Y = np.array(Y)
 
