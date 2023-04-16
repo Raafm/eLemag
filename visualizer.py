@@ -53,8 +53,26 @@ class Visualizer:
             plt.show()
 
 
+def write_file(N, L, V0, charge_distribution, filename="Q2.txt"):
+    f = open(filename, "w")
+    f.write("========== VALUES =======\n")
+    f.write(f"N = {N} ")
+    f.write(f"\nL = {L} ")
+    f.write(f"\nL = {L} ")
+    f.write(f"\nV0 = {V0} ")
+    f.write("========== RESULT =======\n")
+
+    f.write("\nCharge Distribuition on inferior board:")
+    f.write('\n')
+    f.write(str(charge_distribution[:, :, 0]))
+
+    f.write("\nCharge Distribuition on superior board:")
+    f.write('\n')
+    f.write(str(charge_distribution[:, :, 1]))
+
+
 if __name__ == '__main__':
-    N = 10
+    N = 30
     d = 10e-2
     L = 2e-3
     V0 = 10
@@ -65,6 +83,8 @@ if __name__ == '__main__':
     charge_distribution = calculator.generate_spatial_charge_matrix()
 
     # plt.subplot(1,2,1)
+    write_file(N, L, V0, charge_distribution)
+
     visualizador.plot3D_charge_distribution(
         charge_distribution[:, :, 0], show_image=True, title="Placa Inferior")
 
