@@ -42,6 +42,19 @@ class ElemagSpaceCalculator(IndexSpaceConverter):
                 
         if return_result:
             return self.a_vector.copy()
+    
+    def generate_spatial_charge_matrix(self):
+        if self.a_vector is None:
+            self.calculate_a_vector()
+        
+        matrix_espacial = np.zeros(shape = (self.N, self.N, 2))
+        for m in range(self.M):
+            i, j, k = self.get_spatial_indices(m)
+            #print(f"m = {m}, i = {i}, j = {j}, k = {k}")
+            matrix_espacial[self.N-1-j][i][k] = self.a_vector[m]
+        
+        return matrix_espacial
+    
 
 # testando
 if __name__ == "__main__":
