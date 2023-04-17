@@ -32,9 +32,10 @@ class Visualizer:
 
         plt.show()
     
-    def plot_color_charge_distribution(self, charge_distribution_matrix, show_image=False):
+    def plot_color_charge_distribution(self, charge_distribution_matrix, show_image=False, cmap=cm.coolwarm, tamanho_figura = None):
+        
         # media = charge_distribution_matrix.mean()
-        plt.imshow(charge_distribution_matrix, cmap='hot_r')#, interpolation='nearest')
+        plt.imshow(charge_distribution_matrix, cmap= cmap)#, interpolation='nearest')
         plt.colorbar()
         if show_image: plt.show()
 
@@ -54,37 +55,38 @@ if __name__ == '__main__':
     d = 16
     L = 16
 
-    calculator = ElemagSpaceCalculator(N = N, L = L, d = d)
-    calculator.calculate_a_vector()
-    visualizador = Visualizer(N = N)
+    # calculator = ElemagSpaceCalculator(N = N, L = L, d = d)
+    # calculator.calculate_a_vector()
+    # visualizador = Visualizer(N = N)
 
-    charge_distribution = calculator.generate_spatial_charge_matrix()
+    # charge_distribution = calculator.generate_spatial_charge_matrix()
 
-    # plt.subplot(1,2,1)
-    plt.title("placa inferior")
-    visualizador.plot3D_charge_distribution(charge_distribution[:,:,0],show_image=True)
+    # # plt.subplot(1,2,1)
+    # plt.title("placa inferior")
+    # visualizador.plot3D_charge_distribution(charge_distribution[:,:,0],show_image=True)
 
-    plt.title("placa superior")
-    visualizador.plot3D_charge_distribution(charge_distribution[:,:,1],show_image=True)
+    # plt.title("placa superior")
+    # visualizador.plot3D_charge_distribution(charge_distribution[:,:,1],show_image=True)
 
+    plt.figure(figsize = (10,10))
+    lista_N = [4,8,16,32]
+    for i,N in enumerate(lista_N):
+        print("N =",N)
+        calculator = ElemagSpaceCalculator(N = N, L = L, d = d)
+        calculator.calculate_a_vector()
+        visualizador = Visualizer(N = N)
 
-    # for N in [4,8,16,32,64]:
-    #     print("N =",N)
-    #     calculator = ElemagSpaceCalculator(N = N, L = L, d = d)
-    #     calculator.calculate_a_vector()
-    #     visualizador = Visualizer(N = N)
+        charge_distribution = calculator.generate_spatial_charge_matrix()
 
-    #     charge_distribution = calculator.generate_spatial_charge_matrix()
+        # plt.subplot(1,2,1)
+        # plt.title("placa inferior")
+        # visualizador.plot_color_charge_distribution(charge_distribution[:,:,0])
 
-    #     plt.subplot(1,2,1)
-    #     plt.title("placa inferior")
-    #     visualizador.plot_color_charge_distribution(charge_distribution[:,:,0])
-
-    #     plt.subplot(1,2,2)
-    #     plt.title("placa superior")
-    #     visualizador.plot_color_charge_distribution(charge_distribution[:,:,1])
+        plt.subplot(1,len(lista_N),i+1)
+        plt.title("placa superior")
+        visualizador.plot_color_charge_distribution(charge_distribution[:,:,1], cmap = 'hot_r')
         
-    #     plt.show()
+    plt.show()
     
     
 

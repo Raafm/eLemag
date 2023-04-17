@@ -1,14 +1,14 @@
 import numpy as np
 from space_calculator import IndexSpaceConverter
 
-epsolon0 = 1 # escolha de unidades arbitrarias
+epsolon0 = 8.8541e-12  # escolha de unidades arbitrarias
 k_elemag = 1/(4*np.pi*epsolon0)
 
 class ElemagSpaceCalculator(IndexSpaceConverter):
-    def __init__(self,N,L,d):
-        super().__init__(N,L,d)
+    def __init__(self,N,L,d, Voltage = 1):
+        super().__init__(N=16,L=1e-1,d = 2e-3)
         self.Z_matrix = None
-        self.V = np.array([0]*(self.M//2) + [1]*(self.M//2))
+        self.V = np.array([0]*(self.M//2) + [Voltage]*(self.M//2))
         self.a_vector = None
 
     def Z(self, m,n):
